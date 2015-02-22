@@ -10,22 +10,13 @@
             <h1>English-Hiligaynon Dictionary</h1>
 
             <div class="search-container">
-                <form class="search-form" action="" method="POST">
-                    <label>Search term: <input type="text" name="search-field" /></label>
-                    <input type="submit" value="Search" name="Search" />
+                <form id="search-form" class="search-form" action="" method="">
+                    <label>Search term: </label>
+                    <input type="text" id="search-field" class="search-field" />
+                    <input type="submit" id="submit" value="Hit it!" name="Search" />
                 </form>
 
-                <ul id="results" class="results list">
-                    <!-- <li>
-                        <div class="result-item">
-                            <h2 class="eName">
-                                <a href="#"></a>
-                            </h2>
-                            <h3 class="iName"></h3>
-                            <p class="desc"></p>
-                        </div>
-                        </li> -->
-                </ul>
+                <ul id="result" class="result list"></ul>
             </div>
         </section>
 

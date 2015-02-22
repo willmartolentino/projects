@@ -27,24 +27,43 @@ h2 span
   text-transform: none
 
 h3
+  display: none
+  margin: 20px 10px 10px
+  font-size: 2.3em
   font-style: italic
+
+.desc
+  display: none
 
 .main-content
   margin: auto
   padding: 40px
   width: 100%
-  max-width: 960px
+  max-width: 700px
 
 
 .list
-  margin: 0
+  margin: 30px 0
   padding: 0
-  background-color: #D9D9D9
+  /* background-color: #D9D9D9 */
   list-style: none
 
-.list li 
-  padding: 20px
+.list li
+  display: inline-block
+  padding: 15px 20px
   /* background-color: #CCC */
+
+.list .active .hd-3,
+.list .active .desc
+  display: block
+
+.list .active
+  background-color: #D9D9D9
+  border: 1px solid #999
+  text-align: center
+
+.list .active h2
+  margin-top: 10px
 
 .search-form
   text-align: right
@@ -53,9 +72,13 @@ h3
 .search-form
   font-family: helvetica
 
+.search-form label
+  font-weight: 700
+  text-transform: uppercase
+
 .search-form input
   padding: 5px 10px
-  font-size: 0.9em
+  font-size: 0.8em
 
 
 
