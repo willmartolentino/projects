@@ -169,17 +169,17 @@
     }
 
 
-    var form = doc.getElementById( 'search-form' ),
-        inputField = doc.getElementById( 'search-field' ),
-        searchBtn = form.submit;
+    // var form = doc.getElementById( 'search-form' ),
+    //     inputField = doc.getElementById( 'search-field' ),
+    //     searchBtn = form.submit;
 
-        searchBtn.addEventListener( 'click', function() {
-            if ( inputField.value ==  doc.getElementsByClassName( 'hd-link' )[0].innerHTML ) {
-                // alert( true );
-            }
-        } );
+    //     searchBtn.addEventListener( 'click', function() {
+    //         if ( inputField.value ==  doc.getElementsByClassName( 'hd-link' )[0].innerHTML ) {
+    //             // alert( true );
+    //         }
+    //     } );
 
-    console.log(inputField);
+    // console.log(inputField);
 })();
 
 
