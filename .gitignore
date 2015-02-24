@@ -9,4 +9,5 @@ Icon?
 Thumbs.db
 .DS_Store
 .com.apple.timemachine.supported
+.sass-cache
 
