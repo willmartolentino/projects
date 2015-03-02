@@ -157,27 +157,56 @@
     for ( var i = 0, len = hdLinks.length; i < len; i++ ) {
         hdLinks[i].addEventListener( 'click', function() {
             var liTagRef = this.parentElement.parentElement,
-                resultItems = doc.getElementById( 'result' ).children;
+                resultItems = doc.getElementById( 'result' ).children,
+                aTag = doc.createElement( 'a' ),
+                aTagRef = liTagRef.appendChild( aTag ),
+                closeBtn = aTagRef.innerHTML = 'Back to Glossary',
+                closeBtnClass = aTag.setAttribute( 'class', 'close' ),
+                closeBtnLink = aTag.setAttribute( 'href', 'index.html' );
 
-            liTagRef.setAttribute( 'class', 'active' );
             for ( var i = 0, len = resultItems.length; i < len; i++) {
                 resultItem = resultItems[i];
-                resultItem.setAttribute( 'style', 'display: none' );
-                liTagRef.setAttribute( 'style', 'display: block' );
+                resultItem.setAttribute( 'class', 'hidden' );
             }
-        } );
+            liTagRef.setAttribute( 'class', 'active' );
+            liTagRef.firstChild.firstChild.removeAttribute( 'href' );
+            doc.getElementById( 'group-title' ).setAttribute( 'style', 'display: none' );
+        });
     }
 
 
-    // var form = doc.getElementById( 'search-form' ),
-    //     inputField = doc.getElementById( 'search-field' ),
-    //     searchBtn = form.submit;
+    var form = doc.getElementById( 'search-form' ),
+         inputField = doc.getElementById( 'search-field' ),
+         searchBtn = form.submit;
 
-    //     searchBtn.addEventListener( 'click', function() {
-    //         if ( inputField.value ==  doc.getElementsByClassName( 'hd-link' )[0].innerHTML ) {
-    //             // alert( true );
-    //         }
-    //     } );
+         searchBtn.addEventListener( 'click', function(evt) {
+             evt.preventDefault();
+
+             var resultItems = doc.getElementById( 'result' ).children;
+
+             for ( var i = 0, len = resultItems.length; i < len; i++ ) {
+                 resultItem = resultItems[i];
+                 resultItem.setAttribute( 'class', 'hidden' );
+             }
+
+             for ( var i = 0, len = hdLinks.length; i < len; i++ ) {
+                 var inputValue = inputField.value,
+                     hdTarget = hdLinks[i].innerHTML;
+
+                 if ( inputValue == hdTarget ) {
+                     var liTagRef = hdLinks[i].parentElement.parentElement,
+                         aTag = doc.createElement( 'a' ),
+                         aTagRef = liTagRef.appendChild( aTag ),
+                         closeBtn = aTagRef.innerHTML = 'Back to Glossary',
+                         closeBtnClass = aTag.setAttribute( 'class', 'close' ),
+                         closeBtnLink = aTag.setAttribute( 'href', 'index.html' );
+
+                     liTagRef.setAttribute( 'class', 'active' );
+                     liTagRef.firstChild.firstChild.removeAttribute( 'href' );
+                     doc.getElementById( 'group-title' ).setAttribute( 'style', 'display: none' );
+                 }
+             }
+         } );
 
     // console.log(inputField);
 })();
