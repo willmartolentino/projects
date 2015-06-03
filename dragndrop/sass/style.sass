@@ -1,0 +1,71 @@
+body
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+
+h1
+  font-size: 3em
+  text-align: center
+
+a
+  color: #FFF
+  text-decoration: none
+
+.main-content
+  position: relative
+  margin: auto
+  padding: 20px
+  height: 100%
+  width: 100%
+  max-width: 960px
+  background-color: #EAEAEA
+  text-align: center
+
+
+.list
+  margin: 0
+  padding: 0
+  list-style: none
+
+  li
+    display: inline-block
+
+  .draggable-item
+    padding: 10px 12px
+    background-color: #000
+    color: #FFF
+    border-radius: 50%
+    cursor: pointer
+
+  .person
+    text-align: left
+    display: block
+    padding: 20px
+    color: #000
+    border-bottom: 1px solid #555
+
+    &.drop-target
+      border: 2px dashed red
+
+  &.persons
+    float: left
+    margin-top: 100px
+
+.output
+  float: left
+  margin-top: 100px
+  border: 1px solid #555
+
+.current-value
+  display: inline-block
+  padding: 30px 20px
+  background-color: #000
+  color: #FFF
+  font-size: 2em
+  border-radius: 50%
+
+.clearfix
+  overflow: auto
+  zoom: 1
+
+.two-col
+  .col-item
+    width: 49%
