@@ -9,6 +9,15 @@ a
   color: #FFF
   text-decoration: none
 
+[draggable]
+  -moz-user-select: none
+  -khtml-user-select: none
+  -webkit-user-select: none
+  user-select: none
+
+  -khtml-user-drag: element
+  -webkit-user-drag: element
+
 .main-content
   position: relative
   margin: auto
@@ -33,17 +42,36 @@ a
     background-color: #000
     color: #FFF
     border-radius: 50%
-    cursor: pointer
+    cursor: move
 
   .person
-    text-align: left
+    position: relative
     display: block
+    margin-bottom: 20px
     padding: 20px
     color: #000
     border-bottom: 1px solid #555
+    text-align: left
 
-    &.drop-target
-      border: 2px dashed red
+    &.drop-area-zone
+      color: #F00
+      border-bottom: 1px dashed red
+
+      .drop-area
+        border-color: #F00
+
+    .drop-area
+      position: absolute
+      top: 0
+      right: 20px
+      bottom: 0
+      display: inline-block
+      margin: auto
+      padding-top: 5px
+      height: 30px
+      width: 40px
+      border: 1px solid #555
+      text-align: center
 
   &.persons
     float: left
@@ -53,6 +81,10 @@ a
   float: left
   margin-top: 100px
   border: 1px solid #555
+
+  p
+    margin: 0
+    padding: 20px
 
 .current-value
   display: inline-block
@@ -68,4 +100,10 @@ a
 
 .two-col
   .col-item
-    width: 49%
+    width: 45%
+    margin-right: 9%
+
+    &:last-child
+      margin-right: 0
+
+
