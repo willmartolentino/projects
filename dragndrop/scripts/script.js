@@ -40,38 +40,42 @@
     // });
 
     var draggableItems = doc.getElementsByClassName( 'draggable-item' ),
-        dropTarget = doc.getElementsByClassName( 'person' );
+        dropTarget = doc.getElementsByClassName( 'person' ),
+        dragSrcElement = null;
 
 
     // [Effects upon dragging] ::start
-    function handleDragStart( e ) {
+
+    // Data to be sent/transferred upon dragging
+    function DragStart( e ) {
+        draggedElement = this;
+
         this.style.background = '#F00';
 
-        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.effectAllowed = 'copy';
         e.dataTransfer.setData( 'text/html', this.innerHTML );
     }
 
-    function handleDragOver( e ) {
+    function DragOver( e ) {
         if ( e.preventDefault ) {
             e.preventDefault();
         }
 
-        e.dataTransfer.dropEffect = 'move';
+        e.dataTransfer.dropEffect = 'copy';
 
         return false;
     }
 
-    function handleDragEnter( e ) {
+    function DragEnter( e ) {
         this.classList.add( 'drop-area-zone' );
-
-        // console.log( this );
     }
 
-    function handleDragLeave( e ) {
+    function DragLeave( e ) {
         this.classList.remove( 'drop-area-zone' );
     }
 
-    function handleDrop( e ) {
+    // For fetching the data that has been dragged
+    function Drop( e ) {
         if ( e.stopPropagation ) {
             e.stopPropagation(); // Stops some browsers from redirecting.
         }
@@ -83,36 +87,39 @@
 
         dropAreaRef.innerHTML = e.dataTransfer.getData( 'text/html' );
 
-        // function hasSomeParentTheClass(element, classname) {
-        //     if (element.className.split(' ').indexOf(classname)>=0) return true;
-        //     return element.parentNode && hasSomeParentTheClass(element.parentNode, classname);
-        // }
+        draggedElement.style.background = '#000';
 
-        // if ( this.hasSomeParentTheClass(  ) ) return;
+        // if ( this.querySelector( '.drop-area' ) ) {
+        //     var dropValue = dropAreaRef.innerHTML;
+
+        //     function ( value1, value2 ) {
+        //         value1 + value2;
+        //     }
+        // }
 
         return false;
     }
 
-    function handleDragEnd( e ) {
-        draggableItems[i].classList.remove( 'drop-area-zone' );
+    function DragEnd( e ) {
+        dropTarget[i].classList.remove( 'drop-area-zone' );
     }
     // [Effects upon dragging] ::end
 
     // [Applying the Effects] ::start
     for ( var i = 0, len = draggableItems.length; i < len; i++ ) {
-        draggableItems[i].addEventListener( 'dragstart', handleDragStart, false );
+        draggableItems[i].addEventListener( 'dragstart', DragStart, false );
     }
 
     for ( var i = 0, len = dropTarget.length; i < len; i++ ) {
-        dropTarget[i].addEventListener( 'dragover', handleDragOver, false );
+        dropTarget[i].addEventListener( 'dragover', DragOver, false );
 
-        dropTarget[i].addEventListener( 'dragenter', handleDragEnter, false );
+        dropTarget[i].addEventListener( 'dragenter', DragEnter, false );
 
-        dropTarget[i].addEventListener( 'dragleave', handleDragLeave, false );
+        dropTarget[i].addEventListener( 'dragleave', DragLeave, false );
 
-        dropTarget[i].addEventListener( 'dragend', handleDragEnd, false );
+        dropTarget[i].addEventListener( 'dragend', DragEnd, false );
 
-        dropTarget[i].addEventListener( 'drop', handleDrop, false );
+        dropTarget[i].addEventListener( 'drop', Drop, false );
     }
     // [Applying the Effects] ::end
 })();
