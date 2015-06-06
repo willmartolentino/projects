@@ -1,112 +1,77 @@
 (function() {
-    var doc = document;
-
-    // var addEvent = (function () {
-    //   if (document.addEventListener) {
-    //     return function (el, type, fn) {
-    //       if (el && el.nodeName || el === window) {
-    //         el.addEventListener(type, fn, false);
-    //       } else if (el && el.length) {
-    //         for (var i = 0; i < el.length; i++) {
-    //           addEvent(el[i], type, fn);
-    //         }
-    //       }
-    //     };
-    //   } else {
-    //     return function (el, type, fn) {
-    //       if (el && el.nodeName || el === window) {
-    //         el.attachEvent('on' + type, function () { return fn.call(el, window.event); });
-    //       } else if (el && el.length) {
-    //         for (var i = 0; i < el.length; i++) {
-    //           addEvent(el[i], type, fn);
-    //         }
-    //       }
-    //     };
-    //   }
-    // })();
-
-    // function cancel( e ) {
-    //     if (e.preventDefault) e.preventDefault();
-    //     return false;
-    // }
-
-    // addEvent(drop, 'dragover', cancel);
-    // addEvent(drop, 'dragenter', cancel);
-
-    // addEvent( drop, 'drop', function( e ) {
-    //     if (e.preventDefault) e.preventDefault();
-
-    //     this.innerHTML = 'test';
-    // });
-
-    var draggableItems = doc.getElementsByClassName( 'draggable-item' ),
-        dropTarget = doc.getElementsByClassName( 'person' ),
-        dragSrcElement = null;
+    var doc = document,
+        draggableItems = doc.getElementsByClassName( 'draggable-item' ),
+        dropTarget = doc.getElementsByClassName( 'drop-area' );
 
 
-    // [Effects upon dragging] ::start
+    // [ I: Effects upon dragging ] ::start
 
-    // Data to be sent/transferred upon dragging
+    // [ II: Data to be sent/transferred to the 'DROP Target ]'
     function DragStart( e ) {
         draggedElement = this;
 
-        this.style.background = '#F00';
+        this.style.background = '#CC0000';
 
-        e.dataTransfer.effectAllowed = 'copy';
-        e.dataTransfer.setData( 'text/html', this.innerHTML );
+        e.dataTransfer.effectAllowed = 'copy'; // Action for copying the dragged element's data
+        e.dataTransfer.setData( 'text/html', this.innerHTML ); // Setting the dragged element's data to be transferred to the 'DROP Target'
     }
 
+
+    // [ II: Necessary! Allowing the dragged Data to be dropped to the 'DROP Target' ]
     function DragOver( e ) {
         if ( e.preventDefault ) {
-            e.preventDefault();
+            e.preventDefault(); // Preventing the browser's default behavior
         }
 
-        e.dataTransfer.dropEffect = 'copy';
+        e.dataTransfer.dropEffect = 'copy'; // Action for copying the dragged element's data
 
         return false;
     }
 
+
+    // [ II: Adding the 'drop-area-zone' class to the 'DROP Target' ]
     function DragEnter( e ) {
         this.classList.add( 'drop-area-zone' );
     }
 
+
+    // [ II: Removing the 'drop-area-zone' class from the 'DROP Target' ]
     function DragLeave( e ) {
         this.classList.remove( 'drop-area-zone' );
     }
 
-    // For fetching the data that has been dragged
+
+    // [ II: Fetching the Data that has been dragged ]
     function Drop( e ) {
         if ( e.stopPropagation ) {
             e.stopPropagation(); // Stops some browsers from redirecting.
         }
 
-        var dropAreaElement = doc.createElement( 'div' ),
-            dropAreaRef = this.appendChild( dropAreaElement );
+        var dropHolder = this.querySelector( '.drop-box' ),
+            dataHolder = e.dataTransfer.getData( 'text/html' );
 
-        dropAreaRef.setAttribute( 'class', 'drop-area' );
+        dropHolder.setAttribute( 'class', 'drop-box' );
 
-        dropAreaRef.innerHTML = e.dataTransfer.getData( 'text/html' );
+        dropHolder.innerHTML = dataHolder;
 
-        draggedElement.style.background = '#000';
-
-        // if ( this.querySelector( '.drop-area' ) ) {
-        //     var dropValue = dropAreaRef.innerHTML;
-
-        //     function ( value1, value2 ) {
-        //         value1 + value2;
-        //     }
-        // }
+        draggedElement.style.background = '#000'; // Resets the background-color of the dragged element
 
         return false;
     }
 
-    function DragEnd( e ) {
-        dropTarget[i].classList.remove( 'drop-area-zone' );
-    }
-    // [Effects upon dragging] ::end
 
-    // [Applying the Effects] ::start
+    function DragEnd( e ) {
+        this.classList.remove( 'drop-area-zone' );
+    }
+
+    // [ I: Effects upon dragging ] ::start
+
+
+
+    // [ I: Applying the Effects ] ::start
     for ( var i = 0, len = draggableItems.length; i < len; i++ ) {
+        draggableItems[i].setAttribute( 'draggable', 'true' ); // Important! Treating the element as draggable
+
         draggableItems[i].addEventListener( 'dragstart', DragStart, false );
     }
 
@@ -121,5 +86,9 @@
 
         dropTarget[i].addEventListener( 'drop', Drop, false );
     }
-    // [Applying the Effects] ::end
+    // [ I: Applying the Effects ] ::end
 })();
+
+
+
+
