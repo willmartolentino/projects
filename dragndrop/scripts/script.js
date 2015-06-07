@@ -49,28 +49,65 @@
             e.stopPropagation(); // Stops some browsers from redirecting.
         }
 
+        // [How the 'DROP Target' and 'Output Box' react after the data has been dropped] ::start
         var fetchedData = e.dataTransfer.getData( 'text/html' ),
-            dropBox = this.querySelector( '.drop-box' );
+            dropBox = this.querySelector( '.drop-box' ),
+            fetchedDataInt = parseInt( fetchedData, 10 );
 
         if ( dropBox.innerHTML != '' ) {
 
-            var test = parseInt( dropBox.innerHTML, 10) + parseInt( fetchedData, 10 );
+            var currentData = parseInt( dropBox.innerHTML, 10) + fetchedDataInt;
 
-            dropBox.innerHTML = test;
+            dropBox.innerHTML = currentData;
+
+            // [Available Balance] ::start
+            var availableBalance = doc.getElementById( 'available-balance' ),
+                remainingBalance = null;
+
+            remainingBalance = availableBalance.innerHTML - fetchedDataInt;
+
+            availableBalance.innerHTML = remainingBalance;
+
+            if ( availableBalance.innerHTML <= 0 ) {
+                availableBalance.innerHTML = '0';
+            }
+            // [Available Balance] ::end
+
         } else {
             dropBox.innerHTML = fetchedData;
+
+            var outputBox = doc.getElementById( 'output' ),
+                outputBoxChild = outputBox.querySelector( 'p' );
+
+            outputBoxChild.style.display = 'table-cell';
+            outputBox.style.border = '1px solid #FFFF00';
+
+            // [Available Balance] ::start
+            var availableBalance = doc.getElementById( 'available-balance' ),
+                remainingBalance = null;
+
+            remainingBalance = availableBalance.innerHTML - fetchedDataInt;
+
+            availableBalance.innerHTML = remainingBalance;
+            // [Available Balance] ::end
         }
+        // [How the 'DROP Target' and 'Output Box' react after the data has been dropped] ::end
+
+        // [Output Box] ::start
+        var outputAmount = doc.getElementById( 'amount' ),
+            outputName = doc.getElementById( 'person' ),
+            dropTargetName = this.querySelector( '.drop-name' ).innerHTML;
+
+        outputAmount.innerHTML = fetchedData;
+        outputName.innerHTML = dropTargetName;
+        // [Output Box] ::end
+
+        this.classList.remove( 'drop-target-zone' );
 
         draggedElement.style.background = '#471415'; // Resets the background-color of the dragged element
 
         return false;
     }
-
-
-    function DragEnd( e ) {
-        this.classList.remove( 'drop-target-zone' );
-    }
-
     // [ I: Effects upon dragging ] ::start
 
 
@@ -88,8 +125,6 @@
         dropTarget[i].addEventListener( 'dragenter', DragEnter, false );
 
         dropTarget[i].addEventListener( 'dragleave', DragLeave, false );
-
-        dropTarget[i].addEventListener( 'dragend', DragEnd, false );
 
         dropTarget[i].addEventListener( 'drop', Drop, false );
     }
