@@ -1,7 +1,9 @@
 body
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+  background-color: #000A3F
+  font-family: "Lucida Console", Monaco, monospace
 
 h1
+  margin: 20px 0
   font-size: 3em
   text-align: center
 
@@ -24,8 +26,8 @@ a
   padding: 20px
   height: 100%
   width: 100%
-  max-width: 960px
-  background-color: #EAEAEA
+  max-width: 900px
+  color: #FFFF00
   text-align: center
 
 
@@ -38,27 +40,26 @@ a
     display: inline-block
 
   .draggable-item
-    padding: 10px 12px
-    background-color: #000
-    color: #FFF
+    margin: 0 10px
+    padding: 12px 14px
+    background-color: #471415
+    color: #FFFF00
     border-radius: 50%
     cursor: move
 
-  .drop-area
+  .drop-target
     position: relative
     display: block
     margin-bottom: 20px
-    padding: 20px
-    color: #000
-    border-bottom: 1px solid #555
+    padding: 30px 20px
+    border-bottom: 1px solid #471415
     text-align: left
 
-    &.drop-area-zone
-      color: #F00
-      border-bottom: 1px dashed red
+    &.drop-target-zone
+      border-bottom: 1px dashed #FFFF00
 
       .drop-box
-        border-color: #F00
+        border-color: #FFFF00
 
     .drop-box
       position: absolute
@@ -70,27 +71,32 @@ a
       padding-top: 5px
       height: 30px
       width: 40px
-      border: 1px solid #555
+      border: 1px solid #471415
       text-align: center
 
   &.drop-container
     float: left
-    margin-top: 100px
+    margin-top: 50px
 
 .output
+  display: table
   float: left
-  margin-top: 100px
-  border: 1px solid #555
+  margin-top: 50px
+  height: 285px
+  border: 1px solid #471415
 
   p
+    display: table-cell
+    vertical-align: middle
     margin: 0
-    padding: 20px
+    padding: 50px
 
-.current-value
+.current-balance
   display: inline-block
-  padding: 30px 20px
-  background-color: #000
-  color: #FFF
+  margin-top: 10px
+  padding: 35px 20px
+  background-color: #471415
+  color: #FFFF00
   font-size: 2em
   border-radius: 50%
 

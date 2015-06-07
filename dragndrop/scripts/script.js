@@ -1,7 +1,7 @@
 (function() {
     var doc = document,
         draggableItems = doc.getElementsByClassName( 'draggable-item' ),
-        dropTarget = doc.getElementsByClassName( 'drop-area' );
+        dropTarget = doc.getElementsByClassName( 'drop-target' );
 
 
     // [ I: Effects upon dragging ] ::start
@@ -25,19 +25,21 @@
 
         e.dataTransfer.dropEffect = 'copy'; // Action for copying the dragged element's data
 
+        draggedElement.style.background = '#471415'; // Resets the background-color of the dragged element
+
         return false;
     }
 
 
-    // [ II: Adding the 'drop-area-zone' class to the 'DROP Target' ]
+    // [ II: Adding the 'drop-target-zone' class to the 'DROP Target' ]
     function DragEnter( e ) {
-        this.classList.add( 'drop-area-zone' );
+        this.classList.add( 'drop-target-zone' );
     }
 
 
-    // [ II: Removing the 'drop-area-zone' class from the 'DROP Target' ]
+    // [ II: Removing the 'drop-target-zone' class from the 'DROP Target' ]
     function DragLeave( e ) {
-        this.classList.remove( 'drop-area-zone' );
+        this.classList.remove( 'drop-target-zone' );
     }
 
 
@@ -47,21 +49,26 @@
             e.stopPropagation(); // Stops some browsers from redirecting.
         }
 
-        var dropHolder = this.querySelector( '.drop-box' ),
-            dataHolder = e.dataTransfer.getData( 'text/html' );
+        var fetchedData = e.dataTransfer.getData( 'text/html' ),
+            dropBox = this.querySelector( '.drop-box' );
 
-        dropHolder.setAttribute( 'class', 'drop-box' );
+        if ( dropBox.innerHTML != '' ) {
 
-        dropHolder.innerHTML = dataHolder;
+            var test = parseInt( dropBox.innerHTML, 10) + parseInt( fetchedData, 10 );
 
-        draggedElement.style.background = '#000'; // Resets the background-color of the dragged element
+            dropBox.innerHTML = test;
+        } else {
+            dropBox.innerHTML = fetchedData;
+        }
+
+        draggedElement.style.background = '#471415'; // Resets the background-color of the dragged element
 
         return false;
     }
 
 
     function DragEnd( e ) {
-        this.classList.remove( 'drop-area-zone' );
+        this.classList.remove( 'drop-target-zone' );
     }
 
     // [ I: Effects upon dragging ] ::start
