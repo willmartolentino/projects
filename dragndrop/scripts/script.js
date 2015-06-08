@@ -10,7 +10,7 @@
     function DragStart( e ) {
         draggedElement = this;
 
-        this.style.background = '#CC0000';
+        // this.style.background = '#CC0000';
 
         e.dataTransfer.effectAllowed = 'copy'; // Action for copying the dragged element's data
         e.dataTransfer.setData( 'text/html', this.innerHTML ); // Setting the dragged element's data to be transferred to the 'DROP Target'
@@ -25,7 +25,7 @@
 
         e.dataTransfer.dropEffect = 'copy'; // Action for copying the dragged element's data
 
-        draggedElement.style.background = '#471415'; // Resets the background-color of the dragged element
+        // draggedElement.style.background = '#471415'; // Resets the background-color of the dragged element
 
         return false;
     }
@@ -104,7 +104,7 @@
 
         this.classList.remove( 'drop-target-zone' );
 
-        draggedElement.style.background = '#471415'; // Resets the background-color of the dragged element
+        // draggedElement.style.background = '#471415'; // Resets the background-color of the dragged element
 
         return false;
     }
