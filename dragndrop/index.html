@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Drag-N-Drop</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <section class="main-content clearfix">
-        <h1>Drag-N-Drop</h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Drag-N-Drop</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <section class="main-content clearfix">
+            <h1>Drag-N-Drop</h1>
 
-        <div class="inner-content">
-            <p>Available Balance:</p>
-            
-            <p class="balance-container">$<span id="available-balance">140</span>.00</p>
-            
-            <p>Select an amount:</p>
-            
-            <ul class="draggable list">
-                <li class="draggable-item list-item">10</li>
-                <li class="draggable-item list-item">20</li>
-                <li class="draggable-item list-item">30</li>
-                <li class="draggable-item list-item">40</li>
-                <li class="draggable-item list-item">50</li>
-            </ul>
-        </div>
+            <div class="inner-content">
+                <p>Available Balance:</p>
+                
+                <p class="balance-container">$<span id="available-balance">140</span>.00</p>
+                
+                <p>Select an amount:</p>
+                
+                <ul class="draggable list">
+                    <li class="draggable-item list-item">10</li>
+                    <li class="draggable-item list-item">20</li>
+                    <li class="draggable-item list-item">30</li>
+                    <li class="draggable-item list-item">40</li>
+                    <li class="draggable-item list-item">50</li>
+                </ul>
+            </div>
 
-        <div class="two-col">
-            <ul class="drop-container list col-item">
-                <h2>Drop selected amount here</h2>
+            <div class="two-col">
+                <ul class="drop-container list col-item">
+                    <h2>Drop selected amount here</h2>
 
-                <li class="drop-target list-item">
-                    <span class="drop-name">Anne</span> <span class="drop-box"></span>
-                </li>
-                <li class="drop-target list-item">
-                    <span class="drop-name">Amie</span> <span class="drop-box"></span>
-                </li>
-                <li class="drop-target list-item">
-                    <span class="drop-name">Angelo</span> <span class="drop-box"></span>
-                </li>
-            </ul>
-            
-            <div class="col-item">
-                <h2>Result</h2>
+                    <li class="drop-target list-item">
+                        <span class="drop-name">Anne</span> <span class="drop-box"></span>
+                    </li>
+                    <li class="drop-target list-item">
+                        <span class="drop-name">Amie</span> <span class="drop-box"></span>
+                    </li>
+                    <li class="drop-target list-item">
+                        <span class="drop-name">Angelo</span> <span class="drop-box"></span>
+                    </li>
+                </ul>
+                
+                <div class="col-item">
+                    <h2>Result</h2>
 
-                <div id="output" class="output">
-                    <p>
-                        <u>$<span id="amount"></span>.00</u> has been transferred to <u><span id="person"></span></u>.
-                    </p>
+                    <div id="output" class="output">
+                        <p>
+                            <u>$<span id="amount"></span>.00</u> has been transferred to <u><span id="person"></span></u>.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <script src="scripts/script.js"></script>
-</body>
+        <script src="scripts/script.js"></script>
+    </body>
 </html>
