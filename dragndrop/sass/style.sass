@@ -7,14 +7,14 @@ body
   font-family: Roboto, Arial, Tahoma, sans-serif
 
 h1
-  margin: 20px 0 30px
+  margin: 30px 0
   font-size: 3em
   color: #6A2D3C
   font-family: Impact, Charcoal, sans-serif
   text-align: center
   text-transform: uppercase
   letter-spacing: 0.15em
-  text-shadow: 2px 2px 0 #FFFF00, -2px -2px 0 #FFFF00, 2px -2px 0 #FFFF00, -2px 2px 0 #FFFF00, 1px 1px 0 #FFFF00
+  text-shadow: 2px 2px 0 #FF0, -2px -2px 0 #FF0, 2px -2px 0 #FF0, -2px 2px 0 #FF0, 1px 1px 0 #FF0
 
 a
   color: #FFF
@@ -36,7 +36,7 @@ a
   height: 100%
   width: 100%
   max-width: 900px
-  color: #FFFF00
+  color: #FF0
   text-align: center
 
 .list
@@ -49,14 +49,14 @@ a
 
   .draggable-item
     margin: 0 10px
-    padding-top: 20px
-    height: 45px
-    width: 65px
-    background: url('../img/dollar-coin.png') 0 0 no-repeat
-    color: #FFFF00
+    padding-top: 13px
+    height: 35px
+    width: 50px
+    background-color: #5F2231
+    border: 3px solid #FF0
     font-weight: 700
-    cursor: move
-    text-shadow: 1px 1px 2px #800
+    cursor: pointer
+    border-radius: 50%
 
     &:hover
       opacity: 0.7
@@ -67,14 +67,17 @@ a
     margin-bottom: 20px
     padding: 30px
     background-color: rgba(0, 0, 0, 0.13)
+    color: #B33333
     border-bottom: 1px solid #800
     text-align: left
 
     &.drop-target-zone
-      border-bottom-color: #FFFF00
+      background-color: rgba(95, 34, 49, 0.6)
+      color: #FF0
+      border-bottom-color: #FF0
 
       .drop-box
-        border-color: #FFFF00
+        border-color: #FF0
 
     .drop-box
       position: absolute
@@ -86,6 +89,7 @@ a
       padding-top: 5px
       height: 30px
       width: 40px
+      color: #FF0
       border: 1px solid #800
       text-align: center
 
@@ -106,8 +110,8 @@ a
   display: inline-block
   margin: 0 0 20px
   padding: 8px 30px
-  color: #FFFF00
-  border: 1px solid #FFFF00
+  color: #FF0
+  border: 1px solid #FF0
   font-size: 3em
 
 .clearfix

@@ -68,6 +68,16 @@
 
             availableBalance.innerHTML = remainingBalance;
 
+            // Check if the available balance value is less than the draggable items value, if so, disable the draggable items that the have higher
+            for ( var i = 0, len = draggableItems.length; i < len; i++ ) {
+                if ( availableBalance.innerHTML < draggableItems[i].innerHTML ) {
+                    draggableItems[i].style.opacity = '0.3';
+                    draggableItems[i].style.cursor = 'default';
+                    draggableItems[i].setAttribute( 'draggable', 'false' );
+                }
+            }
+
+            // Check if the available balance is equal or less than zero
             if ( availableBalance.innerHTML <= 0 ) {
                 availableBalance.innerHTML = '0';
             }
@@ -89,6 +99,15 @@
             remainingBalance = availableBalance.innerHTML - fetchedDataInt;
 
             availableBalance.innerHTML = remainingBalance;
+
+            // Check if the available balance value is less than the draggable items value, if so, disable the draggable items that have the higher value
+            for ( var i = 0, len = draggableItems.length; i < len; i++ ) {
+                if ( availableBalance.innerHTML < draggableItems[i].innerHTML ) {
+                    draggableItems[i].style.opacity = '0.3';
+                    draggableItems[i].style.cursor = 'default';
+                    draggableItems[i].setAttribute( 'draggable', 'false' );
+                }
+            }
             // [Available Balance] ::end
         }
         // [How the 'DROP Target' and 'Output Box' react after the data has been dropped] ::end
