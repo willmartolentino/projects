@@ -71,11 +71,6 @@
             // [Available Balance] ::start
             availableBalance.innerHTML = remainingBalance;
 
-            // Check if the available balance is equal or less than zero
-            if ( availableBalance.innerHTML <= 0 ) {
-                availableBalance.innerHTML = '0';
-            }
-
             // Check if the available balance value is less than the draggable items value, if so, disable the draggable items that have the higher value
             for ( var i = 0, len = draggableItems.length; i < len; i++ ) {
                 if ( parseInt( availableBalance.innerHTML, 10 ) < parseInt( draggableItems[i].innerHTML ) ) {
@@ -97,6 +92,34 @@
             var remainingBalance = availableBalance.innerHTML - fetchedDataInt;
 
             availableBalance.innerHTML = remainingBalance;
+
+            // Check if the available balance is equal or less than zero, if so, set the available balance to '0' and activate the 'notifire'
+            if ( availableBalance.innerHTML <= 0 ) {
+                var notifire = new Notification( 'Your current balance is $0. Please reload to continue your transaction. Thank you!' );
+
+                // Let's check if the browser supports notifications
+                if ( !( "Notification" in window ) ) {
+                    alert( 'This browser does not support desktop notification' );
+                }
+
+                // Let's check whether notification permissions have alredy been granted
+                else if ( Notification.permission === 'granted' ) {
+                    // If it's okay let's create a notification
+                    notifire;
+                }
+
+                // Otherwise, we need to ask the user for permission
+                else if ( Notification.permission !== 'denied' ) {
+                    Notification.requestPermission( function ( permission ) {
+                        // If the user accepts, let's create a notification
+                        if ( permission === 'granted' ) {
+                            notifire;
+                        }
+                    });
+                }
+
+                availableBalance.innerHTML = '0'; // sets available balance to '0'
+            }
             // [Available Balance] ::end
 
             // Check if the available balance value is less than the draggable items value, if so, disable the draggable items that have the higher value
